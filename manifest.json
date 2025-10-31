@@ -1,7 +1,7 @@
 {
-  "name": "Your App Name",
+  "name": "My Forex Broker",
   "short_name": "TickMill",
-  "description": "The best forex trading app",
+  "description": "The best forex broker and trading app",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#ffffff",
