@@ -7,17 +7,173 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=0">
   <link href="tickmill.png" rel="icon" type="images/png">
   <link rel="manifest" href="manifest.json">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <title>Tick Mill</title>
   <style>
-    
+    body{
+      background: #f2f2f3;
+      margin: 0;
+      padding: 0;
+    }
+    .top{
+      background: #f2f2f3;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: fixed;
+      top: 0;
+      width: 100%;
+    }
+    .top h3{
+      position: relative;
+      font-weight: 900;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+    .topIcons{
+      position: relative;
+      right: 5%;
+    }
+    .top i{
+      margin-left: 30px;
+      font-size: 18px;
+    }
+    .dashboard{
+      background: #fff;
+      margin: 100px 15px 0;
+      padding: 15px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1), 0 8px 20px rgba(0,0,0,0.15);
+      border-radius: 15px;
+    }
+    .userDetails{
+      display: flex;
+      align-items: center;
+      position: relative;
+      padding: 0;
+    }
+    .userDetails p{
+      font-size: 12px;
+      font-weight: bold;
+    }
+    #user{
+      color: rgba(0,0,0,0.5);
+      margin-left: 5px;
+    }
+    .userDetails i{
+      position: absolute;
+      right: 5%;
+      border-radius: 50%;
+      background: #f2f2f3;
+      padding: 10px;
+    }
+    .userInfo{
+      display: flex;
+      padding: 0;
+    }
+    .userInfo p{
+      margin: 0px 5px 0px;
+      font-size: 12px;
+      background: #f2f2f3;
+      padding: 5px; 
+      border-radius: 10px;
+    }
+    .userBalance{
+      font-size: 20px;
+      padding-left: 5px;
+      font-weight: 900;
+      font-family: "Roboto", "Arial", "Helvetica Neue", Helvetica, sans-serif;
+    }
+    .dashButtons{
+      display: flex;
+      justify-content: space-between;
+    }
+    .dashButtons button{
+      background: transparent;
+      color: #000;
+    }
+    .icon{
+      background: #f2f2f3;
+      height: 50px;
+      width: 50px;
+      border-radius: 50%;
+      align-items: center;
+    }
+    .home{
+      background: #83f28f;
+    }
+    .dashButtons i{
+      font-size: 18px;
+      position: relative;
+      top: 30%;
+    }
+    .bottom{
+      display: flex;
+      position: fixed;
+      width: 100%;
+      justify-content: space-between;
+      padding: 15px 10px;
+      bottom: 0;
+      background: #fff;
+      border-top: 1px solid #ccc;
+      box-sizing: border-box;
+    }   
+    .bottomBtn{
+      background: transparent;
+      color: grey;
+    }
+    .bottom i{
+      font-size: 18px;
+      display: block;
+    }
+    .active{
+      color: #000;
+    }
   </style>
 </head>
   <body>
-    <div>
-      
+    <div class="container">
+      <div class="top">
+        <h3>ACCOUNTS</h3>
+        <div class="topIcons">
+          <i class="fa fa-university" aria-hidden="true"></i>
+          <i class="fa fa-bell" aria-hidden="true"></i>
+        </div>
+      </div>
+
+      <div class="dashboard">
+        <div class="userDetails">
+          <p>OWOEYE MICHAEL</p>
+          <p id="user">#592631072</p>
+          <i class="fa fa-angle-right" aria-hidden="true"></i>
+        </div>
+        
+        <div class="userInfo">
+          <p>Real</p>
+          <p>MT5</p>
+          <p>Standard</p>
+        </div>
+        
+        <div class="userBalance">
+          <h4>3,473.04 USD</h4>
+        </div>
+        
+        <div class="dashButtons">      
+          <button><div class="icon home"><i class="fa fa-area-chart" aria-hidden="true"></i></div>Trade</button>
+          <button><div class="icon"><i class="fa fa-arrow-up" aria-hidden="true"></i></div>Deposit</button>
+          <button><div class="icon"><i class="fa fa-paper-plane" aria-hidden="true"></i></div>Withdraw</button>
+          <button><div class="icon"><i class="fa fa-ellipsis-v" aria-hidden="true"></i></div>Details</button>
+        </div>
+      </div>
+    
+      <div class="bottom">
+        <button class="bottomBtn active"><i class="fa fa-home" aria-hidden="true"></i>Accounts</button>      
+        <button class="bottomBtn"><i class="fa fa-area-chart" aria-hidden="true"></i>Trade</button>
+        <button class="bottomBtn"><i class="fa fa-globe" aria-hidden="true"></i>Insights</button>
+        <button class="bottomBtn"><i class="fa fa-heartbeat" aria-hidden="true"></i>Performance</button>     
+        <button class="bottomBtn"><i class="fa fa-user" aria-hidden="true"></i>Profile</button>
+      </div>
     </div>
     <script src="sw.js"></script>
   </body>
 </html>
     
-
