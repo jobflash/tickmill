@@ -576,12 +576,13 @@ function hideDropdown(select) {
             
             // Calculate when header should jump to fixed top
             const headerOffset = header.offsetTop;
+            const headerHeight = header.offsetHeight;
             const fixedTopHeight = fixedTop.offsetHeight;
             
             function handleScroll() {
                 const scrollPosition = window.scrollY;
                 
-                if (scrollPosition >= headerOffset) {
+                if (scrollPosition >= headerHeight) {
                     // To make the header jump before fix top covers add  "- fixedTopHeight" to add headeroffset
                     header.classList.add('in-top');
                     // document.body.classList.add('header-in-top');
