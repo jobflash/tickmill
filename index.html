@@ -206,12 +206,16 @@
       border-top-left-radius: 30px;
       border-top-right-radius: 30px;
       width: 100%;
-      z-index: 1000;
+      z-index: 2000;
       overflow-y: auto;
+      overflow-x: hidden;
       box-sizing: border-box;
-      opacity: 0;
-      visibility: hidden;
+      /*opacity: 0;
+      visibility: hidden;*/
       transition: all 0.3s ease;
+	}
+	.modal::-webkit-scrollbar {
+		display: none
 	}
 	.modal.active{
       opacity: 1;
@@ -307,7 +311,7 @@
 		padding: 0;
 		margin: 0;
 		display: none;  
-		z-index: 1000;
+		z-index: 2000;
 	}
 	.options li {
 		padding: 8px 10px;
@@ -348,6 +352,102 @@
 	.colored{
 		background: dodgerblue;
 	}
+	.terms{
+		margin-top: 50px;
+	}
+	.terms p{
+		margin: 5px;
+		color: rgba(0, 0, 0, 0.5);
+		font-size: 14px;
+	}
+	.terms span{
+		color: #000;
+		margin-left: 10px;
+	}
+	.historySep{
+		margin-top: 40px;
+	}
+	.history{
+		border: 1px solid #ccc;
+		border-radius: 10px;
+		margin-bottom: 10px;
+	}
+	.histHead{
+		display: grid;
+		grid-template-columns: 1.5fr 5.5fr 4fr;
+	}
+	.histOne{
+		margin: auto;
+	}
+	.histOne i{
+		font-size: 20px;
+	}
+	.histTwo{
+		align-items: center;
+	}
+	.histTwo h4{
+		margin-bottom: 1px;
+	}
+	
+	.histTwo p{
+		margin: 1px 0;
+	}
+	.histThree{
+		position: relative;
+		text-align: center;
+	}
+	.histThree h4{
+		margin-bottom: 10px;
+	}	
+	.status{
+		display: inline-flex;
+		background: #D0F7E0;
+		padding: 2px 10px;
+		border-radius: 15px;
+		align-items: center;
+	}
+	.status i{
+		font-size: 8px;
+	}
+	.status p{
+		margin: 0 0 0 5px;
+		font-size: 14px;
+	}
+	.histBottom{
+		display: grid;
+		grid-template-columns: 1.5fr 5.5fr 4fr;
+	}
+	.histFour{
+		border-radius: 50%;
+		background: #ccc;
+		padding: 5px;
+		margin: auto;
+		color: #fff;
+		font-size: 10px;
+	}
+	.histFive{
+	}
+	.histFive p{
+		color: #aaa;
+		font-size: 14px;
+	}
+	.histFive i{
+		margin: 0 5px;
+		color: #bbb;
+	}
+	.histFive span{
+		background: #bbb;
+		font-weight: bold;
+		color: #fff;
+		padding: 1px 6px;
+		font-size: 14px;
+		font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+	}
+	.histSix p{
+		font-size: 14px;
+		color: #aaa;
+	}
+	
   </style>
 </head>
   <body>
@@ -383,7 +483,7 @@
         
         <div class="dashButtons">      
           <button><div class="icon home"><i class="fa fa-area-chart" aria-hidden="true"></i></div>Trade</button>
-          <button><div class="icon"><i class="fa fa-arrow-up" aria-hidden="true"></i></div>Deposit</button>
+          <button onclick="openModal('deposit')"><div class="icon"><i class="fa fa-arrow-up" aria-hidden="true"></i></div>Deposit</button>
           <button><div class="icon"><i class="fa fa-paper-plane" aria-hidden="true"></i></div>Withdraw</button>
           <button><div class="icon"><i class="fa fa-ellipsis-v" aria-hidden="true"></i></div>Details</button>
         </div>
@@ -415,9 +515,9 @@
         <button class="bottomBtn"><i class="fa fa-user" aria-hidden="true"></i>Profile</button>
       </div>
       
-      <div class="modal">
+      <div id="deposit" class="modal">
         <div class="xclose">
-          <button>&times;</button>
+          <button onclick="closeModal('deposit')">&times;</button>
         </div>
         
         <div class="modalTitle">
@@ -482,15 +582,71 @@
 				<p>Fee <span>0%</span></p>
 			</div>
 
-			<div class="history">
-				<div>
-					
+			<div class="historySep">
+				<h4>History</h4>
+				<div class="history">
+				<div class="histHead">
+					<div class="histOne">
+						<i class="fa fa-arrow-circle-down" aria-hidden="true"></i>
+					</div>
+					<div class="histTwo">
+						<h4>Deposit</h4>
+						<p>18 Dec, 14:49</p>
+						<p>Invoice ID 2038718845</p>
+					</div>
+					<div class="histThree">
+						<h4>+ 20 000.00 NGN</h4>
+						<div class="status">
+							<i class="fa fa-circle" aria-hidden="true"></i><p>Done</p>
+						</div>
+					</div>
 				</div>
-			</div>
-		
+				<div class="histBottom">
+					<div class="histFour">
+						<i class="fa fa-television" aria-hidden="true"></i>
+					</div>
+					<div class="histFive">
+						<p>Online Bank Tra...<i class="fa fa-long-arrow-right" aria-hidden="true"></i><span>ex</span></p>
+					</div>
+					<div class="histSix">
+						<p>131734923</p>
+					</div>
+				</div>
+				</div>
+
+				<div class="history">
+				<div class="histHead">
+					<div class="histOne">
+						<i class="fa fa-exchange" aria-hidden="true"></i>
+					</div>
+					<div class="histTwo">
+						<h4>Deposit</h4>
+						<p>18 Dec, 14:49</p>
+						<p>Invoice ID 2038718845</p>
+					</div>
+					<div class="histThree">
+						<h4>+ 20 000.00 NGN</h4>
+						<div class="status">
+							<i class="fa fa-circle" aria-hidden="true"></i><p>Done</p>
+						</div>
+					</div>
+				</div>
+				<div class="histBottom">
+					<div class="histFour">
+						<i class="fa fa-television" aria-hidden="true"></i>	
+					</div>
+					<div class="histFive">
+						<p>Online Bank Tra...<i class="fa fa-long-arrow-right" aria-hidden="true"></i><span>ex</span></p>
+					</div>
+					<div class="histSix">
+						<p>131734923</p>
+					</div>
+				</div>	
+				</div>
+				
           </div>
         </div>
-		
+	  </div>
 	</div>
     <script src="sw.js"></script>
   </body>
@@ -597,6 +753,70 @@ function hideDropdown(select) {
             // Listen for scroll events
             window.addEventListener('scroll', handleScroll);
         });
+	
+        // Pop up modal
+        function openModal(modalId) {
+            const modal = document.getElementById(modalId);
+            if (modal) {
+                modal.classList.add('active');
+                document.body.style.overflow = 'hidden'; // Prevent scrolling
+                
+                // Add event listener for Escape key
+                document.addEventListener('keydown', handleEscapeKey);
+                
+                // Add event listener for outside click
+                modal.addEventListener('click', handleOutsideClick);
+            }
+        }
 
+        function closeModal(modalId) {
+            const modal = document.getElementById(modalId);
+            if (modal) {
+                modal.classList.remove('active');
+                document.body.style.overflow = 'auto'; // Restore scrolling
+                
+                // Remove event listeners
+                document.removeEventListener('keydown', handleEscapeKey);
+                modal.removeEventListener('click', handleOutsideClick);
+            }
+        }
+
+        // Close modal with Escape key
+        function handleEscapeKey(e) {
+            if (e.key === 'Escape') {
+                // Find the currently active modal and close it
+                const activeModal = document.querySelector('.modal-overlay.active');
+                if (activeModal) {
+                    closeModal(activeModal.id);
+                }
+            }
+        }
+
+        // Close modal when clicking outside content
+        function handleOutsideClick(e) {
+            if (e.target === this) {
+                closeModal(this.id);
+            }
+        }
+
+        // Close all modals (useful for resetting state)
+        function closeAllModals() {
+            const modals = document.querySelectorAll('.modal');
+            modals.forEach(modal => {
+                modal.classList.remove('active');
+            });
+            document.body.style.overflow = 'auto';
+            
+            // Remove all event listeners
+            document.removeEventListener('keydown', handleEscapeKey);
+            modals.forEach(modal => {
+                modal.removeEventListener('click', handleOutsideClick);
+            });
+        }
+
+        // Initialize modals on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            // You can add any initialization code here if needed
+        });
 </script>
 </html>
