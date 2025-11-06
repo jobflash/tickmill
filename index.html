@@ -67,7 +67,6 @@
 	.header.in-top h3{
 		font-size: 20px;
 		font-weight: 900;
-		font-family: "Roboto", "Arial", "Helvetica Neue", Helvetica, sans-serif;
 		margin-bottom: 0;
 	}
     .dashboard{
@@ -302,9 +301,8 @@
 		left: 0;
 		right: 0;
 		background: white;
-		border: 1px solid #ccc;
-		border-top: none;
-		border-radius: 0 0 4px 4px;
+		border-shadow: 5px 5px 8px rgba(0, 0, 0, 0.15);
+		border-radius: 0 0 10px 10px;
 		max-height: 150px;
 		overflow-y: auto;
 		list-style: none;
@@ -318,6 +316,9 @@
 		cursor: pointer;
 	}
 	.options li:hover {
+		background-color: #f0f0f0;
+	}
+	.firstLi li {
 		background-color: #f0f0f0;
 	}
 	.note{
@@ -367,11 +368,22 @@
 	.historySep{
 		margin-top: 40px;
 	}
+	.histDate{
+		background: rgba(3, 3, 3, 0.05);
+		padding: 10px;
+		border-radius: 5px;
+		margin-bottom: 20px; 
+	}
+	.histDate p{
+		font-size: 14px;
+		margin: 0;
+	}
 	.history{
 		border: 1px solid #ccc;
 		border-radius: 10px;
-		margin-bottom: 10px;
-	}
+		margin-bottom: 20px;
+		color: rgba(0, 0, 0, 0.7);
+	} 
 	.histHead{
 		display: grid;
 		grid-template-columns: 1.5fr 5.5fr 4fr;
@@ -386,18 +398,25 @@
 		align-items: center;
 	}
 	.histTwo h4{
-		margin-bottom: 1px;
+		margin-top: 15px;
+		font-weight: 400;
+		margin-bottom: 5px;
+		font-size: 14px;
 	}
 	
 	.histTwo p{
-		margin: 1px 0;
+		margin: 2px 0;
+		font-size: 12px;
+		color: rgba(3, 3, 3, 0.5);
 	}
 	.histThree{
 		position: relative;
 		text-align: center;
 	}
 	.histThree h4{
-		margin-bottom: 10px;
+		margin-top: 15px;
+		margin-bottom: 5px;
+		font-size: 14px;
 	}	
 	.status{
 		display: inline-flex;
@@ -405,13 +424,14 @@
 		padding: 2px 10px;
 		border-radius: 15px;
 		align-items: center;
+		color: #008000;
 	}
 	.status i{
 		font-size: 8px;
 	}
 	.status p{
 		margin: 0 0 0 5px;
-		font-size: 14px;
+		font-size: 12px;
 	}
 	.histBottom{
 		display: grid;
@@ -425,19 +445,45 @@
 		color: #fff;
 		font-size: 10px;
 	}
+	.cleanBack{
+		background: transparent;
+	}
+	.histFour span{
+		background: #bbb;
+		font-weight: bold;
+		text-align: center;
+		align-items: center;
+		color: #fff;
+		padding: 1px 6px;
+		font-size: 14px;
+		font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+	}
 	.histFive{
+		display: flex;
+		justify-content: space-between;
 	}
 	.histFive p{
-		color: #aaa;
+		color: rgba(3, 3, 3, 0.5);
 		font-size: 14px;
 	}
 	.histFive i{
-		margin: 0 5px;
+		margin: auto;
 		color: #bbb;
+	}
+	.withdraw{
+		border-radius: 50%;
+		background: #ccc;
+		padding: 5px;
+		margin: auto;
+		font-size: 10px;
+	}
+	.withdraw i{
+		color: #fff;
 	}
 	.histFive span{
 		background: #bbb;
 		font-weight: bold;
+		text-align: right;
 		color: #fff;
 		padding: 1px 6px;
 		font-size: 14px;
@@ -445,9 +491,24 @@
 	}
 	.histSix p{
 		font-size: 14px;
-		color: #aaa;
+		color: rgba(3, 3, 3, 0.5);
 	}
-	
+	.rejectedIcon i{
+		color: rgba(222, 49, 66, 0.8);
+	}
+	.rejectedState{
+		background: rgba(222, 49, 66, 0.1);
+		color: rgba(222, 49, 66, 0.8);
+	} 
+	.rejected{
+		margin-bottom: 0;
+		font-size: 14px;
+		padding: 20px;
+		background: rgba(222, 49, 66, 0.1);
+		border-bottom-left-radius: 10px;
+		border-bottom-right-radius: 10px;
+		border: 1px solid rgba(222, 49, 66, 0.2);
+	}
   </style>
 </head>
   <body>
@@ -484,7 +545,7 @@
         <div class="dashButtons">      
           <button><div class="icon home"><i class="fa fa-area-chart" aria-hidden="true"></i></div>Trade</button>
           <button onclick="openModal('deposit')"><div class="icon"><i class="fa fa-arrow-up" aria-hidden="true"></i></div>Deposit</button>
-          <button><div class="icon"><i class="fa fa-paper-plane" aria-hidden="true"></i></div>Withdraw</button>
+          <button onclick="openModal('withdraw')"><div class="icon"><i class="fa fa-paper-plane" aria-hidden="true"></i></div>Withdraw</button>
           <button><div class="icon"><i class="fa fa-ellipsis-v" aria-hidden="true"></i></div>Details</button>
         </div>
       </div>
@@ -514,7 +575,8 @@
         <button class="bottomBtn"><i class="fa fa-heartbeat" aria-hidden="true"></i>Performance</button>     
         <button class="bottomBtn"><i class="fa fa-user" aria-hidden="true"></i>Profile</button>
       </div>
-      
+
+		<!-- MAIN DEPOSIT -->
       <div id="deposit" class="modal">
         <div class="xclose">
           <button onclick="closeModal('deposit')">&times;</button>
@@ -526,15 +588,15 @@
         </div>
 
         <div class="modalBody">
-			<p class="pahe">Payment Method</p>
+			<p class="pahe">Payment method</p>
 			<div class="select">	
 				<input type="text" class="datalistInput" id="employ" readonly>
 				<div class="arrow">▼</div>
 				<ul class="options">
-					<div class="firstLi"><li data-value="Self-Employed">MT5:   592631072</li></div>
-					<li data-value="Student">Student</li>
-					<li data-value="Employed">Employed</li>
-					<li data-value="Unemployed">Unemployed</li>
+					<div class="firstLi"><li data-value="Self-Employed">12391..... Access Bank</li></div>
+					<li data-value="Student">Bank Card</li>
+					<li data-value="Employed">Bitcoin (BTC)</li>
+					<li data-value="Unemployed">Ethereum (ETH)</li>
 				</ul>
 			</div>
 			  
@@ -546,19 +608,17 @@
 				</ul>
 			</div>
 
-			<p class="pahe">Payment Method</p>
+			<p class="pahe">Bank transfer option</p>
 			<div class="select">	
 				<input type="text" class="datalistInput" id="employ" readonly>
 				<div class="arrow">▼</div>
 				<ul class="options">
-					<div class="firstLi"><li data-value="Self-Employed">MT5:   592631072</li></div>
-					<li data-value="Student">Student</li>
-					<li data-value="Employed">Employed</li>
-					<li data-value="Unemployed">Unemployed</li>
+					<div class="firstLi"><li data-value="Employed">Online Bank Transfer</li></div>
+					<li data-value="Student">Online Bank Transfer #2</li>
 				</ul>
 			</div>
 
-			<p class="pahe">Payment Method</p>
+			<p class="pahe">To account</p>
 			<div class="select">	
 				<input type="text" class="datalistInput" readonly>
 				<div class="arrow noFlip"><p>$23,473.04</p>▼</div>
@@ -584,6 +644,13 @@
 
 			<div class="historySep">
 				<h4>History</h4>
+
+				<!-- Date -->
+				<div class="histDate">
+					<p>Nov 2025</p> 
+				</div>
+
+				<!-- Deposit -->
 				<div class="history">
 				<div class="histHead">
 					<div class="histOne">
@@ -591,7 +658,7 @@
 					</div>
 					<div class="histTwo">
 						<h4>Deposit</h4>
-						<p>18 Dec, 14:49</p>
+						<p>3 Nov, 16:49</p>
 						<p>Invoice ID 2038718845</p>
 					</div>
 					<div class="histThree">
@@ -606,7 +673,9 @@
 						<i class="fa fa-television" aria-hidden="true"></i>
 					</div>
 					<div class="histFive">
-						<p>Online Bank Tra...<i class="fa fa-long-arrow-right" aria-hidden="true"></i><span>ex</span></p>
+						<p>Online Bank Tra...</p>
+						<i class="fa fa-long-arrow-right" aria-hidden="true"></i>
+						<p><span>ex</span></p>
 					</div>
 					<div class="histSix">
 						<p>131734923</p>
@@ -614,14 +683,248 @@
 				</div>
 				</div>
 
+				<!-- Transfer out-->
 				<div class="history">
 				<div class="histHead">
 					<div class="histOne">
 						<i class="fa fa-exchange" aria-hidden="true"></i>
 					</div>
 					<div class="histTwo">
+						<h4>Transfer</h4>
+						<p>3 Nov, 14:49</p>
+						<p>Invoice ID 2038718845</p>
+					</div>
+					<div class="histThree">
+						<h4>50.00 USD</h4>
+						<div class="status">
+							<i class="fa fa-circle" aria-hidden="true"></i><p>Sent</p>
+						</div>
+					</div>
+				</div>
+				<div class="histBottom">
+					<div class="histFour cleanBack">
+						<p><span>ex</span></p>
+					</div>
+					<div class="histFive">
+						<p>131734923</p>
+						<i class="fa fa-long-arrow-right" aria-hidden="true"></i>
+						<p><span>ex</span></p>
+					</div>
+					<div class="histSix">
+						<p>173725939</p>
+					</div>
+				</div>	
+				</div>
+
+				<!-- Date -->
+				<div class="histDate">
+					<p>Oct 2025</p> 
+				</div>
+				
+				<!-- Transfer in-->
+				<div class="history">
+				<div class="histHead">
+					<div class="histOne">
+						<i class="fa fa-exchange" aria-hidden="true"></i>
+					</div>
+					<div class="histTwo">
+						<h4>Transfer</h4>
+						<p>3 Nov, 14:49</p>
+						<p>Invoice ID 2038718845</p>
+					</div>
+					<div class="histThree">
+						<h4>+ 50.00 USD</h4>
+						<div class="status">
+							<i class="fa fa-circle" aria-hidden="true"></i><p>Done</p>
+						</div>
+					</div>
+				</div>
+				<div class="histBottom">
+					<div class="histFour cleanBack">
+						<p><span>ex</span></p>
+					</div>
+					<div class="histFive">
+						<p>173725923</p>
+						<i class="fa fa-long-arrow-right" aria-hidden="true"></i>
+						<p><span>ex</span></p>
+					</div>
+					<div class="histSix">
+						<p>131734923</p>
+					</div>
+				</div>	
+				</div>
+				
+				<!-- Failed one -->
+				<div class="history">
+				<div class="histHead">
+					<div class="histOne rejectedIcon">
+						<i class="fa fa-arrow-circle-down" aria-hidden="true"></i>
+					</div>
+					<div class="histTwo">
 						<h4>Deposit</h4>
-						<p>18 Dec, 14:49</p>
+						<p>1 Nov, 09:20</p>
+						<p>Invoice ID 2038718845</p>
+					</div>
+					<div class="histThree">
+						<h4>+ 20 000.00 NGN</h4>
+						<div class="status rejectedState">
+							<i class="fa fa-circle" aria-hidden="true"></i><p>Rejected</p>
+						</div>
+					</div>
+				</div>
+				<div class="histBottom">
+					<div class="histFour">
+						<i class="fa fa-television" aria-hidden="true"></i>	
+					</div>
+					<div class="histFive">
+						<p>Online Bank Tra...</p>
+						<i class="fa fa-long-arrow-right" aria-hidden="true"></i>
+						<p><span>ex</span></p>
+					</div>
+					<div class="histSix">
+						<p>131734923</p>
+					</div>
+				</div>
+					<div class="rejected">
+						Transaction timed out. Please try again later or use another payment method.
+					</div>
+				</div>
+
+				<!-- Date -->
+				<div class="histDate">
+					<p>Sep 2025</p> 
+				</div>
+				
+				<!-- Failed two -->
+				<div class="history">
+				<div class="histHead">
+					<div class="histOne rejectedIcon">
+						<i class="fa fa-arrow-circle-down" aria-hidden="true"></i>
+					</div>
+					<div class="histTwo">
+						<h4>Deposit</h4>
+						<p>1 Nov, 09:20</p>
+						<p>Invoice ID 2038718845</p>
+					</div>
+					<div class="histThree">
+						<h4>+ 20 000.00 NGN</h4>
+						<div class="status rejectedState">
+							<i class="fa fa-circle" aria-hidden="true"></i><p>Rejected</p>
+						</div>
+					</div>
+				</div>
+				<div class="histBottom">
+					<div class="histFour">
+						<i class="fa fa-television" aria-hidden="true"></i>	
+					</div>
+					<div class="histFive">
+						<p>Online Bank Tra...</p>
+						<i class="fa fa-long-arrow-right" aria-hidden="true"></i>
+						<p><span>ex</span></p>
+					</div>
+					<div class="histSix">
+						<p>131734923</p>
+					</div>
+				</div>
+					<div class="rejected">
+						Temporary bank processing error. Please try again later or use another payment method. If the issue persists, kindly contact your bank.
+					</div>
+				</div>
+
+				<!-- Withdraw -->
+				<div class="history">
+				<div class="histHead">
+					<div class="histOne">
+						<i class="fa fa-paper-plane" aria-hidden="true"></i>
+					</div>
+					<div class="histTwo">
+						<h4>Withdraw</h4>
+						<p>3 Nov, 16:49</p>
+						<p>Invoice ID 2038718845</p>
+					</div>
+					<div class="histThree">
+						<h4>- 1 000.00 USD</h4>
+						<div class="status">
+							<i class="fa fa-circle" aria-hidden="true"></i><p>Sent</p>
+						</div>
+					</div>
+				</div>
+				<div class="histBottom">
+					<div class="histFour cleanBack">
+						<p><span>ex</span></p>
+					</div>
+					<div class="histFive">
+						<p>131734923</p>
+						<i class="fa fa-long-arrow-right" aria-hidden="true"></i>
+						<div class="withdraw">
+							<i class="fa fa-television" aria-hidden="true"></i>
+						</div>
+					</div>
+					<div class="histSix">
+						<p>Online Bank</p>
+					</div>
+				</div>
+				</div>
+				
+				<!-- Withdraw Failed-->
+				<div class="history">
+				<div class="histHead">
+					<div class="histOne rejectedIcon">
+						<i class="fa fa-paper-plane" aria-hidden="true"></i>
+					</div>
+					<div class="histTwo">
+						<h4>Withdraw</h4>
+						<p>3 Nov, 16:49</p>
+						<p>Invoice ID 2038718845</p>
+					</div>
+					<div class="histThree">
+						<h4>- 1 000.00 USD</h4>
+						<div class="status rejectedState">
+							<i class="fa fa-circle" aria-hidden="true"></i><p>Rejected</p>
+						</div>
+					</div>
+				</div>
+				<div class="histBottom">
+					<div class="histFour cleanBack">
+						<p><span>ex</span></p>
+					</div>
+					<div class="histFive">
+						<p>131734923</p>
+						<i class="fa fa-long-arrow-right" aria-hidden="true"></i>
+						<div class="withdraw">
+							<i class="fa fa-television" aria-hidden="true"></i>
+						</div>
+					</div>
+					<div class="histSix">
+						<p>Online Bank</p>
+					</div>
+				</div>
+				</div>
+				
+          </div>
+        </div>
+	  </div>
+
+		<!-- MAIN WITHDRAW -->
+      <div id="withdraw" class="modal">
+        <div class="xclose">
+          <button onclick="closeModal('withdraw')">&times;</button>
+        </div>
+        
+        <div class="modalTitle">
+          <h3>Withdraw</h3>
+        </div>
+
+        <div class="modalBody">
+				<!-- Withdraw -->
+				<div class="history">
+				<div class="histHead">
+					<div class="histOne">
+						<i class="fa fa-arrow-circle-down" aria-hidden="true"></i>
+					</div>
+					<div class="histTwo">
+						<h4>Deposit</h4>
+						<p>3 Nov, 16:49</p>
 						<p>Invoice ID 2038718845</p>
 					</div>
 					<div class="histThree">
@@ -633,18 +936,18 @@
 				</div>
 				<div class="histBottom">
 					<div class="histFour">
-						<i class="fa fa-television" aria-hidden="true"></i>	
+						<i class="fa fa-television" aria-hidden="true"></i>
 					</div>
 					<div class="histFive">
-						<p>Online Bank Tra...<i class="fa fa-long-arrow-right" aria-hidden="true"></i><span>ex</span></p>
+						<p>Online Bank Tra...</p>
+						<i class="fa fa-long-arrow-right" aria-hidden="true"></i>
+						<p><span>ex</span></p>
 					</div>
 					<div class="histSix">
 						<p>131734923</p>
 					</div>
-				</div>	
 				</div>
-				
-          </div>
+				</div>
         </div>
 	  </div>
 	</div>
