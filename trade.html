@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="description" content="The best forex broker">
+  <meta name="keywords" content="Broker">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=0">
+  <link href="tickmill.png" rel="icon" type="images/png">
+  <link rel="manifest" href="manifest.json">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <title>Tick Mill</title>
+  <style>
+    body{
+      background: #f2f2f3;
+      margin: 0;
+      padding: 0;
+      font-family: "Arial", "Helvetica Neue", Helvetica, sans-serif;
+    }
+    .top{
+      background: #f2f2f3;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: fixed;
+      top: 0;
+      width: 100%;
+      height: auto;
+      z-index: 1001;
+    }
+    .topIcons{
+      width: 100%;
+      margin: 10px 17px;
+      text-align: right;
+    }
+    .top i{
+      margin-left: 30px;
+      font-size: 18px;
+    }
+	.headDash{
+      margin: 0 15px;
+      position: relative;
+      padding-top: 95px;
+
+	}
+	.header{
+		margin: 0;
+		padding: 0;
+		position: absolute;
+		top: 50px;
+	}
+	.header h3{
+		font-size: 2rem;
+		margin: 0;
+		font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+	}
+	.header.in-top{
+		position: fixed;
+		top: 0;
+		left: 50%;
+		transform: translateX(-50%);
+		width: 35%;
+		margin-top: 0;
+		padding: 5px 30px;
+		background: transparent;
+		z-index: 1001;
+		background: #fff;
+		border: 1px solid #ccc;
+		border-radius: 20px;
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+	}
+	.header.in-top p{
+		font-size: 12px;
+		margin: 0;
+	}
+	.header.in-top h4{
+		font-size: 14px;
+		margin: 5px 0;
+	} 
+	.header.in-top i{
+		font-size: 22px;
+		margin: 0;
+	}
+    .body{
+      margin: 25px 15px;
+    }
+    .tradesHead{
+      padding: 0px;
+      border-bottom: 1px solid #ccc;
+      display: flex;
+      overflow-x: auto;
+    }
+	  
+	.tradesHead::-webkit-scrollbar{
+		display: none
+	}
+    .tradesHead button{
+      background: transparent;
+      color: rgba(3, 3, 3, 0.4);
+      margin: 0;
+      width: 100%;
+      white-space: nowrap;
+      padding-bottom: 10px;
+      padding-right: 20px;
+      padding-left: 10px;
+      font-size: 12px;
+      font-weight: bold;
+      border: none;
+    }
+    .tradesHead button.active{
+      color: #000;
+      border-bottom: 1.5px solid #000;
+	}
+	.preTrades{
+		display: flex;
+		margin-top: 10px;
+	}
+	.preFi{
+		background: rgba(3, 3, 3, 0.05);
+		padding: 5px 15px;
+		color: rgba(3, 3, 3, 0.4);
+		margin-right: 10px;
+		border-radius: 10px;
+	}
+	.preLa{
+		background: rgba(3, 3, 3, 0.05);
+		padding: 5px;
+		border-radius: 10px;
+		display: flex;
+		align-items: center;
+	}
+	.preFi p, .preLa p{
+		margin: 0;
+		font-size: 12px;
+	}
+	.preLa i{
+		margin: 0 5px;
+	} 
+    .trades{
+		text-align: center;
+		background: #fff;
+		margin: 0;
+    }
+    
+    .bottom{
+      display: flex;
+      position: fixed;
+      width: 100%;
+      justify-content: space-between;
+      padding: 15px 10px;
+      bottom: 0;
+      background: #fff;
+      border-top: 1px solid #ccc;
+      box-sizing: border-box;
+    }   
+    .bottomBtn{
+      background: transparent;
+      color: grey;
+      margin-bottom: 20px;
+    }
+    .bottom i{
+      font-size: 18px;
+      display: block;
+    }
+    .active{
+      color: #000;
+    }
+  </style>
+</head>
+  <body>
+    <div class="container">
+      <div class="top">
+        <div class="topIcons">
+          <i class="fa fa-clock" aria-hidden="true"></i>
+        </div>
+		<div class="header in-top">
+			<p>Real</p>
+			<h4>23,302.24 USD</h4>
+			<i class="fa fa-ellipsis-v" aria-hidden="true"></i>
+		</div>
+      </div>
+
+      <div class="headDash">
+      <div class="header">
+		  <h3>Trade</h3>
+	  </div>
+	  </div> 
+
+      <div class="body">
+        <div class="tradesHead">
+          <button class="active">Favorites</button>
+          <button onclick="this.classList.toggle('active')">Most Traded</button>
+          <button onclick="this.classList.toggle('active')">Top Movers</button>
+          <button onclick="this.classList.toggle('active')">Major currencies</button>
+          <button onclick="this.classList.toggle('active')">Minor currencies</button>
+        </div>
+		<div class="preTrades">
+			<div class="preFi">
+				<p>Sorted Manually</p>
+			</div>
+			<div class="preLa">
+				<p>Edit</p>
+				<i class="fa fa-pencil-square" aria-hidden="true"></i>
+			</div>
+		</div>
+        <div class="trades">
+          <div class="tradesP">
+            <h4>No open positions</h4>
+          </div>
+      </div>
+    
+      <div class="bottom">
+        <button onclick="window.location.href='index.html'" class="bottomBtn"><i class="fa fa-home" aria-hidden="true"></i>Accounts</button>      
+        <button class="bottomBtn active"><i class="fa fa-area-chart" aria-hidden="true"></i>Trade</button>
+        <button onclick="window.location.href='insight.html'" class="bottomBtn"><i class="fa fa-globe" aria-hidden="true"></i>Insights</button>
+        <button onclick="window.location.href='trade.html'" class="bottomBtn"><i class="fa fa-heartbeat" aria-hidden="true"></i>Performance</button>     
+        <button onclick="window.location.href='profile.html'" class="bottomBtn"><i class="fa fa-user" aria-hidden="true"></i>Profile</button>
+      </div>
+	</div>
+    <script src="sw.js"></script>
+  </body>
+<script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const header = document.getElementById('flip');
+            const fixedTop = document.querySelector('.top');
+            
+            // Calculate when header should jump to fixed top
+            const headerOffset = header.offsetTop;
+            const headerHeight = header.offsetHeight;
+            const fixedTopHeight = fixedTop.offsetHeight;
+            
+            function handleScroll() {
+                const scrollPosition = window.scrollY;
+                
+                if (scrollPosition >= headerHeight) {
+                    // To make the header jump before fix top covers add  "- fixedTopHeight" to add headeroffset
+                    header.classList.add('in-top');
+                    // document.body.classList.add('header-in-top');
+                } else {
+                    // Header should be in normal position
+                    header.classList.remove('in-top');
+                    document.body.classList.remove('header-in-top');
+                }
+			}
+            // Initial check on page load
+            handleScroll();
+            
+            // Listen for scroll events
+            window.addEventListener('scroll', handleScroll);
+        });
+	
+        // Pop up modal
+        function openModal(modalId) {
+            const modal = document.getElementById(modalId);
+            if (modal) {
+                modal.classList.add('active');
+                document.body.style.overflow = 'hidden'; // Prevent scrolling
+                
+                // Add event listener for Escape key
+                document.addEventListener('keydown', handleEscapeKey);
+                
+                // Add event listener for outside click
+                modal.addEventListener('click', handleOutsideClick);
+            }
+        }
+
+        function closeModal(modalId) {
+            const modal = document.getElementById(modalId);
+            if (modal) {
+                modal.classList.remove('active');
+                document.body.style.overflow = 'auto'; // Restore scrolling
+                
+                // Remove event listeners
+                document.removeEventListener('keydown', handleEscapeKey);
+                modal.removeEventListener('click', handleOutsideClick);
+            }
+        }
+
+        // Close modal with Escape key
+        function handleEscapeKey(e) {
+            if (e.key === 'Escape') {
+                // Find the currently active modal and close it
+                const activeModal = document.querySelector('.modal-overlay.active');
+                if (activeModal) {
+                    closeModal(activeModal.id);
+                }
+            }
+        }
+
+        // Close modal when clicking outside content
+        function handleOutsideClick(e) {
+            if (e.target === this) {
+                closeModal(this.id);
+            }
+        }
+
+        // Close all modals (useful for resetting state)
+        function closeAllModals() {
+            const modals = document.querySelectorAll('.modal');
+            modals.forEach(modal => {
+                modal.classList.remove('active');
+            });
+            document.body.style.overflow = 'auto';
+            
+            // Remove all event listeners
+            document.removeEventListener('keydown', handleEscapeKey);
+            modals.forEach(modal => {
+                modal.removeEventListener('click', handleOutsideClick);
+            });
+        }
+
+        // Initialize modals on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            // You can add any initialization code here if needed
+        });
+</script>
+</html>
