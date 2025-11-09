@@ -987,6 +987,15 @@
     <script src="sw.js"></script>
   </body>
 <script>
+// Fill Months
+// Select all elements with class "highlight"
+const MonthOne = document.querySelectorAll('.monthOne');
+
+// Change text for each
+MonthOne.forEach(el => {
+  el.textContent = 'Nov';
+});
+	
 // Initialize all custom selects
 document.querySelectorAll('.select').forEach(select => {
   const input = select.querySelector('.datalistInput');
